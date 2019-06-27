@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/bellicapelli0/UniAdvisor/issues"
   },
-  "homepage": "https://github.com/bellicapelli0/UniAdvisor#readme"
+  "homepage": "https://github.com/bellicapelli0/UniAdvisor#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }

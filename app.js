@@ -1,13 +1,22 @@
-var http = require('http');
+var express = require('express');
+var app = express();
+var port = process.env.PORT || 8080;
+var path = require('path');
 
+app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname + '/templates/index.html'));
+});
 
+app.get("/form", function(req, res) {
+    res.sendFile(path.join(__dirname + '/templates/form.html'));
+});
 
+app.post("/form", function(req, res){
+    console.log("i recieved a POST req");
+});
 
-var server = http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello Worldn');
-})
-server.listen(8080, '127.0.0.1');
+app.listen(port, function() {
+    console.log("Listening on " + port);
+});
 
-
-console.log('Server running at http://127.0.0.1:8080/');
+//console.log('Server running at http://localhost:8080/');
