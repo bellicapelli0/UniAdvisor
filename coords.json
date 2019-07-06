@@ -1,0 +1,101 @@
+ag": {
+		"longname": "Dipartimento di ingegneria informatica e automatica 'Antonio Ruberti'",
+		"lat": 41.89,
+		"lng": 12.503,
+		"address": "via Ariosto, 25",
+		"ac": true,
+		"wifi": true,
+		"plugs": true,
+		"figa": false
+	},
+	"exposte": {
+		"longname": "EX Poste - Edificio Marco Polo - Sapeienza Università di Roma",
+		"lat": 41.896,
+		"lng": 12.52,
+		"address": "Via dello Scalo S. Lorenzo, 82",
+		"ac": true,
+		"wifi": true,
+		"plugs": false,
+		"figa": true
+	},
+	"lab": {
+		"longname": "Laboratorio di Informatica Paolo Ercoli",
+		"lat": 41.899,
+		"lng": 12.516,
+		"address": "Via Tiburtina, 205",
+		"ac": true,
+		"wifi": true,
+		"plugs": true,
+		"figa": false
+	},
+	"pratone": {
+		"longname": "Pratone della Sapienza",
+		"lat": 41.903,
+		"lng": 12.516,
+		"address": "Viale Regina Elena, 334",
+		"ac": false,
+		"wifi": false,
+		"plugs": false,
+		"figa": true
+	},
+	"mirafiori": {
+		"longname": "Università la Sapienza - Dipartimento di Filosofia",
+		"lat": 41.919,
+		"lng": 12.517,
+		"address": "Via Carlo Fea, 2",
+		"ac": false,
+		"wifi": true,
+		"plugs": true,
+		"figa": true
+	},
+	"spv": {
+		"longname": "La Sapienza - Dipartimento di Ingegneria Civile, Edile ed Ambientale",
+		"lat": 41.893,
+		"lng": 12.492,
+		"address": "Via Eudossiana, 22",
+		"ac": true,
+		"wifi": true,
+		"plugs": true,
+		"figa": false
+	},
+	"geologia": {
+		"longname": "La Sapienza - Dipartimento di Scienze della Terra",
+		"lat": 41.903,
+		"lng": 12.513,
+		"address": "Piazzale Aldo Moro, 5",
+		"ac": true,
+		"wifi": true,
+		"plugs": true,
+		"figa": true
+	},
+	"maxxi": {
+		"longname": "MAXXI",
+		"lat": 41.928,
+		"lng": 12.477,
+		"address": "Via Guido Reni, 4A",
+		"ac": true,
+		"wifi": true,
+		"plugs": false,
+		"figa": true
+	},
+	"roma3": {
+		"longname": "Università degli Studi Roma 3",
+		"lat": 41.862,
+		"lng": 12.478,
+		"address": "Via Ostiense, 163",
+		"ac": true,
+		"wifi": true,
+		"plugs": true,
+		"figa": true
+	},
+	"bellearti": {
+		"longname": "Accademia di Belle Arti",
+		"lat": 41.907,
+		"lng": 12.475,
+		"address": "Via di Ripetta 222",
+		"ac": false,
+		"wifi": true,
+		"plugs": false,
+		"figa": true
+	}
+}
