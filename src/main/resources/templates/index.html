@@ -7,5 +7,12 @@
 <body>
     THIS IS THE INDEX!
 
+    <div sec:authorize="isAuthenticated()">
+        <a href="/logout">logout</a>
+    </div>
+
+    <div sec:authorize="isAnonymous()">
+        <a href="/login">login</a>
+    </div>
 </body>
 </html>
