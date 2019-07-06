@@ -1,7 +1,7 @@
 node_modules/
-
-.idea
-.mvn
+old_nodejs/
+.idea/
+.mvn/
 
 target/
 package.json
