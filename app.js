@@ -1,8 +1,10 @@
-var express = require('express');
-var app = express();
+"use strict";
+
+const express = require('express');
+const app = express();
 var port = process.env.PORT || 8080;
 var path = require('path');
-
+var test = require('./test.js');
 
 //Controller for root
 app.get("/", function(req, res) {
@@ -23,4 +25,4 @@ app.listen(port, function() {
     console.log('Server running at http://localhost:'+port+'/');
 });
 
-
+test();
