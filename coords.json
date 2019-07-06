@@ -1,4 +1,4 @@
-ag": {
+"diag": {
 		"longname": "Dipartimento di ingegneria informatica e automatica 'Antonio Ruberti'",
 		"lat": 41.89,
 		"lng": 12.503,
@@ -8,7 +8,7 @@ ag": {
 		"plugs": true,
 		"figa": false
 	},
-	"exposte": {
+"exposte": {
 		"longname": "EX Poste - Edificio Marco Polo - Sapeienza Università di Roma",
 		"lat": 41.896,
 		"lng": 12.52,
@@ -18,7 +18,7 @@ ag": {
 		"plugs": false,
 		"figa": true
 	},
-	"lab": {
+"lab": {
 		"longname": "Laboratorio di Informatica Paolo Ercoli",
 		"lat": 41.899,
 		"lng": 12.516,
@@ -28,7 +28,7 @@ ag": {
 		"plugs": true,
 		"figa": false
 	},
-	"pratone": {
+"pratone": {
 		"longname": "Pratone della Sapienza",
 		"lat": 41.903,
 		"lng": 12.516,
@@ -38,7 +38,7 @@ ag": {
 		"plugs": false,
 		"figa": true
 	},
-	"mirafiori": {
+"mirafiori": {
 		"longname": "Università la Sapienza - Dipartimento di Filosofia",
 		"lat": 41.919,
 		"lng": 12.517,
@@ -48,7 +48,7 @@ ag": {
 		"plugs": true,
 		"figa": true
 	},
-	"spv": {
+"spv": {
 		"longname": "La Sapienza - Dipartimento di Ingegneria Civile, Edile ed Ambientale",
 		"lat": 41.893,
 		"lng": 12.492,
@@ -58,7 +58,7 @@ ag": {
 		"plugs": true,
 		"figa": false
 	},
-	"geologia": {
+"geologia": {
 		"longname": "La Sapienza - Dipartimento di Scienze della Terra",
 		"lat": 41.903,
 		"lng": 12.513,
@@ -68,7 +68,7 @@ ag": {
 		"plugs": true,
 		"figa": true
 	},
-	"maxxi": {
+"maxxi": {
 		"longname": "MAXXI",
 		"lat": 41.928,
 		"lng": 12.477,
@@ -78,7 +78,7 @@ ag": {
 		"plugs": false,
 		"figa": true
 	},
-	"roma3": {
+"roma3": {
 		"longname": "Università degli Studi Roma 3",
 		"lat": 41.862,
 		"lng": 12.478,
@@ -88,7 +88,7 @@ ag": {
 		"plugs": true,
 		"figa": true
 	},
-	"bellearti": {
+"bellearti": {
 		"longname": "Accademia di Belle Arti",
 		"lat": 41.907,
 		"lng": 12.475,
