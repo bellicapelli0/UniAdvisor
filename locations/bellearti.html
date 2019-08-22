@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="it">
 <head>
-	<title>EXPOSTE</title>
+	<title>ACCADEMIA BELLE ARTI</title>
 	<style>
+       /* Set the size of the div element that contains the map */
       #map {
         height: 400px;  
         width: 40%;  
@@ -24,7 +25,7 @@
 </head>
 <body>
 	<br>
-	<h1>EX Poste - Edificio Marco Polo - Sapienza Università di Roma </h1>
+	<h1>Accademia di Belle Arti</h1>
 	<br>
 	
 	<div id="map">
@@ -32,13 +33,13 @@
 	<script>
 	// Initialize and add the map
 	function initMap() {
-  		// The location of ExPoste
-  		var exPoste = {lat: 41.896, lng: 12.52};
-  		// The map, centered at ExPoste
+  		// The location of bellearti
+  		var bellearti = {lat: 41.907, lng: 12.475};
+  		// The map, centered at bellearti
   		var map = new google.maps.Map(
-      		document.getElementById('map'), {zoom: 17, center: exPoste});
-  		// The marker, positioned at Uluru
-  		var marker = new google.maps.Marker({position: exPoste, map: map});
+      		document.getElementById('map'), {zoom: 17, center: bellearti});
+  		// The marker, positioned at bellearti
+  		var marker = new google.maps.Marker({position: bellearti, map: map});
 	}
 	</script>
 	<!--Load the API from the specified URL
@@ -53,13 +54,14 @@
 
 	<div id="specifics">
 	<br><br>
-	<h2> Indirizzo: via dello Scalo S. Lorenzo, 82 </h2>  
-	<h2> Aria Condizionata: si </h2>
-	<h2> Prese: si </h2>
+	<h2> Indirizzo: via di Ripetta, 222 </h2>  
+	<h2> Aria Condizionata: no </h2>
+	<h2> Prese: no </h2>
 	<h2> WiFi: si </h2>
 	<br>
 	</div>
 
 </body>
 </html>
+
 
