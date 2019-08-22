@@ -1,20 +1,25 @@
-package api;
+package com.uniadvisor.uniadvisor.api;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.springframework.security.web.firewall.RequestRejectedException;
+import com.uniadvisor.uniadvisor.db.DBContext;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class responseController {
+public class ResponseController {
     private final AtomicLong counter = new AtomicLong();
+    private DBContext db;
+
+    public ResponseController(DBContext db) {
+        this.db = db;
+    }
 
     @RequestMapping("/location")
-    public apiresponse location(@RequestParam(value="name", defaultValue="diag") String name) {
+    public ApiResponse location(@RequestParam(value="name", defaultValue="diag") String name) {
         //la stringa name contierrà lo shortname della location, la apiresponse ha un id univoco e una location
-        return new apiresponse(counter.incrementAndGet(), new location());
+        return new ApiResponse(counter.incrementAndGet(), new Location());
     }
 /*
     @RequestMapping("/coordinates")

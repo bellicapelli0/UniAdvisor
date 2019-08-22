@@ -1,8 +1,6 @@
-package api;
+package com.uniadvisor.uniadvisor.api;
 
-import sun.font.TrueTypeFont;
-
-public class location {
+public class Location {
     private final double lat;
     private final double lng;
     private final String longName;
@@ -12,7 +10,7 @@ public class location {
     private final Boolean plugs;
     private final Boolean WiFi;
 
-    public location(float lat, float lng, String longName, String shortName, String address, Boolean AC, Boolean plugs, Boolean wiFI) {
+    public Location(float lat, float lng, String longName, String shortName, String address, Boolean AC, Boolean plugs, Boolean wiFI) {
         this.lat = lat;
         this.lng = lng;
         this.longName = longName;
@@ -23,7 +21,7 @@ public class location {
         this.WiFi = wiFI;
     }
 
-    public location() {
+    public Location() {
         this.lat = 41.89;
         this.lng = 12.503;
         this.longName = "Dipartimento di ingegneria informatica e automatica 'Antonio Ruberti";
@@ -51,7 +49,7 @@ public class location {
         return Math.sqrt(lon*lon + lat*lat);
     }
 
-    public double getDist(location l){
+    public double getDist(Location l){
         double lon = this.lng - l.lng;
         double lat = this.lat - l.lat;
         return Math.sqrt(lon*lon + lat*lat);
