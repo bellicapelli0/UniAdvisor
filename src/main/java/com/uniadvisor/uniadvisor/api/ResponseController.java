@@ -19,7 +19,6 @@ public class ResponseController {
         return new ApiResponse(counter.incrementAndGet(), new Location());
     }
 
-
     //Se vai su localhost:8080/example, vedi il risultato
     @GetMapping("/example")
     public Set example(){
