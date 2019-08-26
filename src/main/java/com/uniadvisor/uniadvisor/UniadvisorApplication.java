@@ -13,7 +13,6 @@ public class UniadvisorApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(UniadvisorApplication.class, args);
-
     }
 
     @Bean
