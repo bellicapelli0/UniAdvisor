@@ -15,10 +15,10 @@ public class UniadvisorApplication {
         SpringApplication.run(UniadvisorApplication.class, args);
     }
 
-    @Bean
-    public DBContext mapDB(){
-        return MapDBContext.onlineInstance("file.db");
-    }
+//    @Bean
+//    public DBContext mapDB(){
+//        return MapDBContext.onlineInstance("file.db");
+//    }
 
     @Bean
     public SpringSecurityDialect springSecurityDialect() {

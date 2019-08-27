@@ -3,9 +3,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public final class Pair<A, B> {
+public final class Pair<A, B> implements Serializable {
     @JsonProperty("a")
     private final A a;
     @JsonProperty("b")

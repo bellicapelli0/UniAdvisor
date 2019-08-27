@@ -1,6 +1,7 @@
 package com.uniadvisor.uniadvisor.db;
 
 import com.uniadvisor.uniadvisor.api.Location;
+import com.uniadvisor.uniadvisor.util.Pair;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -11,7 +12,6 @@ public class Database {
     private static DBContext db = MapDBContext.onlineInstance("file.db");
 
 
-
     public static Map<String, Location> getLocations(){
         return db.getMap("LOCATIONS");
     }
@@ -20,7 +20,15 @@ public class Database {
         return db.getSet("TEST");
     }
 
+    public static Map<String, Pair<Integer, Integer>> getVotes(){
+        return db.getMap("VOTES");
+    }
+
     public static void commit() {
         db.commit();
+    }
+
+    public static Map<String, double[]> test(){
+        return db.getMap("TESTARRAY");
     }
 }

@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import com.uniadvisor.uniadvisor.db.DBContext;
 import com.uniadvisor.uniadvisor.db.Database;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.xml.crypto.Data;
@@ -16,14 +17,14 @@ import static com.uniadvisor.uniadvisor.api.Location.closest;
 public class ResponseController {
     private final AtomicLong counter = new AtomicLong();
 
-    @RequestMapping("/location") //richiesta per il nome della location
+    @RequestMapping("/api/location") //richiesta per il nome della location
     public ApiResponse location(@RequestParam(value="name", defaultValue="diag") String name) {
         Map<String, Location> locations = Database.getLocations();
         Location l = locations.get(name);
         return new ApiResponse(counter.incrementAndGet(), l);
     }
 
-    @RequestMapping("/coordinates") //richiesta per la location più vicina
+    @RequestMapping("/api/coordinates") //richiesta per la location più vicina
     public ApiResponse coordinates(@RequestParam(value="lat", defaultValue = "41.89") String la,
                                    @RequestParam(value="lng", defaultValue = "12.503") String lo) {
         double lat = Double.parseDouble(la);
@@ -47,7 +48,10 @@ public class ResponseController {
         return "Success! "+par1+" added to set!\nGo localhost:8080/example to see result";
     }
 
-
-
+    @GetMapping("/rating")
+    public String rating(@RequestParam(value = "vote", required = false) String vote){
+        System.out.println(vote);
+        return vote;
+    }
 
 }

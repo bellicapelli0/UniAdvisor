@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it">
 <head>
-	<title>DIAG</title>
+	<title>GEOLOGIA</title>
 	<style>
        /* Set the size of the div element that contains the map */
       #map {
@@ -25,7 +25,7 @@
 </head>
 <body>
 	<br>
-	<h1>Dipartimento di ingegneria informatica e automatica 'Antonio Ruberti'</h1>
+	<h1>Università la Sapienza - Dipartimento di Scienze della Terra</h1>
 	<br>
 	
 	<div id="map">
@@ -33,13 +33,13 @@
 	<script>
 	// Initialize and add the map
 	function initMap() {
-  		// The location of Diag
-  		var diag = {lat: 41.89, lng: 12.503};
-  		// The map, centered at Diag
+  		// The location of geologia
+  		var geologia = {lat: 41.903, lng: 12.513};
+  		// The map, centered at geologia
   		var map = new google.maps.Map(
-      		document.getElementById('map'), {zoom: 17, center: diag});
-  		// The marker, positioned at Uluru
-  		var marker = new google.maps.Marker({position: diag, map: map});
+      		document.getElementById('map'), {zoom: 17, center: geologia});
+  		// The marker, positioned at geologia
+  		var marker = new google.maps.Marker({position: geologia, map: map});
 	}
 	</script>
 	<!--Load the API from the specified URL
@@ -54,7 +54,7 @@
 
 	<div id="specifics">
 	<br><br>
-	<h2> Indirizzo: via Ariosto 25 </h2>  
+	<h2> Indirizzo: Piazzale Aldo Moro, 5 </h2>  
 	<h2> Aria Condizionata: si </h2>
 	<h2> Prese: si </h2>
 	<h2> WiFi: si </h2>
@@ -63,4 +63,5 @@
 
 </body>
 </html>
+
 
