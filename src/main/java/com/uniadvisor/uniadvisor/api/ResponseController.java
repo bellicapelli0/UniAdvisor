@@ -1,5 +1,6 @@
 package com.uniadvisor.uniadvisor.api;
 
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -9,14 +10,26 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.xml.crypto.Data;
 
+import static com.uniadvisor.uniadvisor.api.Location.closest;
+
 @RestController
 public class ResponseController {
     private final AtomicLong counter = new AtomicLong();
 
-    @RequestMapping("/location")
+    @RequestMapping("/location") //richiesta per il nome della location
     public ApiResponse location(@RequestParam(value="name", defaultValue="diag") String name) {
-        //la stringa name contierrà lo shortname della location, la apiresponse ha un id univoco e una location
-        return new ApiResponse(counter.incrementAndGet(), new Location());
+        Map<String, Location> locations = Database.getLocations();
+        Location l = locations.get(name);
+        return new ApiResponse(counter.incrementAndGet(), l);
+    }
+
+    @RequestMapping("/coordinates") //richiesta per la location più vicina
+    public ApiResponse coordinates(@RequestParam(value="lat", defaultValue = "41.89") String la,
+                                   @RequestParam(value="lng", defaultValue = "12.503") String lo) {
+        double lat = Double.parseDouble(la);
+        double lng = Double.parseDouble(lo);
+
+        return new ApiResponse(counter.incrementAndGet(), Location.closest(lat,lng));
     }
 
     //Se vai su localhost:8080/example, vedi il risultato
@@ -33,12 +46,8 @@ public class ResponseController {
         Database.commit();
         return "Success! "+par1+" added to set!\nGo localhost:8080/example to see result";
     }
-/*
-    @RequestMapping("/coordinates")
-    public apiresponse coordinates(@RequestParam(value="lat", defaultValue = "41.89") String lat,
-                                   @RequestParam(value="lng", defaultValue = "12.503") String lng) {
 
-    }
 
- */
+
+
 }
