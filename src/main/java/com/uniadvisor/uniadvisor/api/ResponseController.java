@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import com.uniadvisor.uniadvisor.db.DBContext;
 import com.uniadvisor.uniadvisor.db.Database;
+import com.uniadvisor.uniadvisor.util.LocationUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +31,7 @@ public class ResponseController {
         double lat = Double.parseDouble(la);
         double lng = Double.parseDouble(lo);
 
-        return new ApiResponse(counter.incrementAndGet(), Location.closest(lat,lng));
+        return new ApiResponse(counter.incrementAndGet(), LocationUtil.closest(lat,lng));
     }
 
     //Se vai su localhost:8080/example, vedi il risultato

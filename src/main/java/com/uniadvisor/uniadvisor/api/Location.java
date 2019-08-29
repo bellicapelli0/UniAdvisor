@@ -1,10 +1,6 @@
 package com.uniadvisor.uniadvisor.api;
 
-import com.uniadvisor.uniadvisor.db.Database;
-
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Map;
 
 public class Location implements Serializable {
     private final double lat;
@@ -61,33 +57,7 @@ public class Location implements Serializable {
         return Math.sqrt(lon*lon + lat*lat);
     }
 
-    public static Location closest(double lat, double lng){
-        Map<String, Location> locations = Database.getLocations();
 
-        Location resultLocation = new Location();
-        double distance = 99999999;
-
-        for (Map.Entry<String, Location> entry : locations.entrySet()){
-            Location l = entry.getValue();
-            if( l.getDist(lat, lng) < distance ){
-                resultLocation = l;
-                distance = l.getDist(lat, lng);
-            }
-        }
-        return resultLocation;
-    }
-
-    public static Location[] threeClosest(double lat, double lng){
-        Map<String, Location> locations = Database.getLocations();
-        int i = 0;
-        int size = locations.size();
-        double[] arr = new double[size];
-        for(Map.Entry<String, Location> entry : locations.entrySet()){
-            arr[i++] = entry.getValue().getDist(lat,lng);
-        }
-        Arrays.sort(arr);
-        return null ;//Arrays.copyOfRange(arr,0, 2);
-    }
 
     public double getLat() {
         return lat;
