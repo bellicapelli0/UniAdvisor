@@ -18,8 +18,13 @@ public class InitDB {
 
         Map<String, Location> locations = Database.getLocations();
         locations.put("diag", new Location());
+
         locations.put("exposte", new Location(41.896335, 12.5177278, "EX Poste - Edificio Marco Polo - Sapeienza Università di Roma", "exposte", "Via dello Scalo San Lorenzo, 82", Boolean.TRUE, Boolean.FALSE, Boolean.TRUE));
         locations.put("lab", new Location(41.8998813, 12.516822, "Laboratorio di Informatica Paolo Ercoli", "lab", "Via Tiburtina, 205", Boolean.TRUE, Boolean.TRUE, Boolean.TRUE));
+
+        locations.put("exposte", new Location(41.896, 12.52, "EX Poste - Edificio Marco Polo - Sapeienza Università di Roma", "exposte", "Via dello Scalo San Lorenzo, 82", Boolean.TRUE, Boolean.FALSE, Boolean.TRUE));
+        locations.put("lab", new Location(41.899, 12.516, "Laboratorio di Informatica Paolo Ercoli", "lab", "Via Tiburtina, 205", Boolean.TRUE, Boolean.TRUE, Boolean.TRUE));
+
         locations.put("pratone", new Location(41.903, 12.516, "Pratone della Sapienza", "pratone", "Viale Regina Elena, 334", Boolean.FALSE, Boolean.FALSE, Boolean.FALSE));
         locations.put("mirafiori", new Location(41.919, 12.517, "Università la Sapienza - Dipartimento di Filosofia", "mirafiori", "Via Carlo Fea, 2", Boolean.FALSE, Boolean.TRUE, Boolean.TRUE));
         locations.put("spv", new Location(41.893, 12.492, "La Sapienza - Dipartimento di Ingegneria Civile, Edile ed Ambientale", "spv", "Via Eudossiana, 22", Boolean.TRUE, Boolean.TRUE, Boolean.TRUE));

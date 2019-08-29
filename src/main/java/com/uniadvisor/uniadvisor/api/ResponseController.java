@@ -2,7 +2,7 @@ package com.uniadvisor.uniadvisor.api;
 
 import com.uniadvisor.uniadvisor.db.Database;
 import com.uniadvisor.uniadvisor.util.LocationUtil;
-import com.uniadvisor.uniadvisor.api.Location;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
+
 
 
 
@@ -26,7 +27,7 @@ public class ResponseController {
     }
 
     @RequestMapping("/api/coordinates") //richiesta per la location più vicina
-    public ApiResponse coordinates(@RequestParam(value="lat", defaultValue = "41.89") String la,
+    public ApiResponse coordinates(@RequestParam(value="lat", defaultValue = "41.890") String la,
                                    @RequestParam(value="lng", defaultValue = "12.503") String lo) {
         double lat = Double.parseDouble(la);
         double lng = Double.parseDouble(lo);
@@ -59,8 +60,11 @@ public class ResponseController {
         return "Success! "+par1+" added to set!\nGo localhost:8080/example to see result";
     }
 
-    @GetMapping("/rating")
-    public String rating(@RequestParam(value = "vote", required = false) String vote){
+    @GetMapping("/api/rating")
+    public String rating(@RequestParam(value = "vote", required = false) String vote, @RequestParam(value = "location") String location){
+        if(!Database.getLocations().keySet().contains(location)){
+            return " ";
+        }
         System.out.println(vote);
         return vote;
     }
