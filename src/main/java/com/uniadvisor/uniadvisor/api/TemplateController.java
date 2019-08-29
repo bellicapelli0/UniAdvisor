@@ -18,7 +18,7 @@ public class TemplateController {
     private OAuth2AuthorizedClientService authorizedClientService;
 
 
-    @GetMapping("{location}")
+    @GetMapping("/{location}")
     public String locations(@PathVariable("location") String location, Model model, OAuth2AuthenticationToken authentication){
         Map userAttributes = AuthorizedClientServiceUtil.getAttributes(authorizedClientService, authentication);
         model.addAttribute("name", userAttributes.get("name"));
