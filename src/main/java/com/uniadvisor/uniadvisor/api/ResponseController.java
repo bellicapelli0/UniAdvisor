@@ -1,18 +1,18 @@
 package com.uniadvisor.uniadvisor.api;
 
+import com.uniadvisor.uniadvisor.db.Database;
+import com.uniadvisor.uniadvisor.util.LocationUtil;
+import com.uniadvisor.uniadvisor.api.Location;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
-import com.uniadvisor.uniadvisor.db.DBContext;
-import com.uniadvisor.uniadvisor.db.Database;
-import com.uniadvisor.uniadvisor.util.LocationUtil;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
 
-import javax.xml.crypto.Data;
-
-import static com.uniadvisor.uniadvisor.api.Location.closest;
 
 @RestController
 public class ResponseController {
@@ -21,8 +21,8 @@ public class ResponseController {
     @RequestMapping("/api/location") //richiesta per il nome della location
     public ApiResponse location(@RequestParam(value="name", defaultValue="diag") String name) {
         Map<String, Location> locations = Database.getLocations();
-        Location l = locations.get(name);
-        return new ApiResponse(counter.incrementAndGet(), l);
+
+        return new ApiResponse(counter.incrementAndGet(), locations.get("diag"));
     }
 
     @RequestMapping("/api/coordinates") //richiesta per la location più vicina
@@ -33,6 +33,16 @@ public class ResponseController {
 
         return new ApiResponse(counter.incrementAndGet(), LocationUtil.closest(lat,lng));
     }
+
+//    @RequestMapping("/api/threeclosest") //richiesta per la location più vicina
+//    public Location[] threeClosest(@RequestParam(value="lat", defaultValue = "41.89") String la,
+//                                   @RequestParam(value="lng", defaultValue = "12.503") String lo) {
+//        double lat = Double.parseDouble(la);
+//        double lng = Double.parseDouble(lo);
+//
+//        return LocationUtil.threeClosest(lat,lng);
+//    }
+
 
     //Se vai su localhost:8080/example, vedi il risultato
     @GetMapping("/example")
@@ -54,5 +64,6 @@ public class ResponseController {
         System.out.println(vote);
         return vote;
     }
+
 
 }

@@ -24,8 +24,8 @@ public class Location implements Serializable {
     }
 
     public Location() {
-        this.lat = 41.89;
-        this.lng = 12.503;
+        this.lat = 41.891026;
+        this.lng = 12.503710;
         this.longName = "Dipartimento di ingegneria informatica e automatica 'Antonio Ruberti";
         this.shortName = "diag";
         this.address = "via Ariosto, 25";
@@ -41,19 +41,21 @@ public class Location implements Serializable {
                 address + "\n" +
                 "    AC: " + (AC ? "YES" : "NO") +
                 "    Plugs: " + (plugs ? "YES" : "NO") +
-                "    WIFI: " + (WiFi ? "YES" : "NO");
+                "    WIFI: " + (WiFi ? "YES" : "NO") + "\n\n\n";
 
     }
 
-    public double getDist(double lo, double la){
-        double lon = this.lng - lo;
+    public double getDist(double la, double lo){
         double lat = this.lat - la;
+        double lon = this.lng - lo;
+//        System.out.println(lon+ " "+ lat);
         return Math.sqrt(lon*lon + lat*lat);
     }
 
     public double getDist(Location l){
-        double lon = this.lng - l.lng;
         double lat = this.lat - l.lat;
+        double lon = this.lng - l.lng;
+//        System.out.println(lon+ " "+ lat);
         return Math.sqrt(lon*lon + lat*lat);
     }
 
