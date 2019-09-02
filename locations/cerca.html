@@ -7,12 +7,35 @@
 <body>
 
 	
-	<form name="ricerca" action="?" method="post">
+
 		<p>Cerca la sede pi&ugrave; vicina</p>
 		<input type="text" name="sede" value=""/><br/><br/>
-		<input  type="submit" name="button" value="INIZIA LA RICERCA"/>
+		<button  onclick="getLocation()">INIZIA LA RICERCA</button>
 
-	</form>
-	
 
+
+	<script>
+		var options = {
+		  enableHighAccuracy: true,
+		  timeout: 5000,
+		  maximumAge: 0
+		};
+
+		function success(pos) {
+		  var crd = pos.coords;
+
+		  console.log('Your current position is:');
+		  console.log(`Latitude : ${crd.latitude}`);
+		  console.log(`Longitude: ${crd.longitude}`);
+		  console.log(`More or less ${crd.accuracy} meters.`);
+		}
+
+		function error(err) {
+		  console.warn(`ERROR(${err.code}): ${err.message}`);
+		  window.location.replace("uniadvisor.com:8080")
+		}
+		function getLocation() {
+			navigator.geolocation.getCurrentPosition(success, error, options);
+		}
+</script>
 </body>

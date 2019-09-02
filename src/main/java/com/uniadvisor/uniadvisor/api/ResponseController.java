@@ -12,9 +12,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
-
-
-
 @RestController
 public class ResponseController {
     private final AtomicLong counter = new AtomicLong();
@@ -23,7 +20,7 @@ public class ResponseController {
     public ApiResponse location(@RequestParam(value="name", defaultValue="diag") String name) {
         Map<String, Location> locations = Database.getLocations();
 
-        return new ApiResponse(counter.incrementAndGet(), locations.get("diag"));
+        return new ApiResponse(counter.incrementAndGet(), locations.get(name));
     }
 
     @RequestMapping("/api/coordinates") //richiesta per la location più vicina
@@ -35,14 +32,14 @@ public class ResponseController {
         return new ApiResponse(counter.incrementAndGet(), LocationUtil.closest(lat,lng));
     }
 
-//    @RequestMapping("/api/threeclosest") //richiesta per la location più vicina
-//    public Location[] threeClosest(@RequestParam(value="lat", defaultValue = "41.89") String la,
-//                                   @RequestParam(value="lng", defaultValue = "12.503") String lo) {
-//        double lat = Double.parseDouble(la);
-//        double lng = Double.parseDouble(lo);
-//
-//        return LocationUtil.threeClosest(lat,lng);
-//    }
+    @RequestMapping("/api/threeclosest") //richiesta per la location più vicina
+    public Location[] threeClosest(@RequestParam(value="lat", defaultValue = "41.89") String la,
+                                   @RequestParam(value="lng", defaultValue = "12.503") String lo) {
+        double lat = Double.parseDouble(la);
+        double lng = Double.parseDouble(lo);
+
+        return LocationUtil.threeClosest(lat,lng);
+    }
 
 
     //Se vai su localhost:8080/example, vedi il risultato
