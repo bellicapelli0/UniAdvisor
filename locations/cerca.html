@@ -7,12 +7,47 @@
 <body>
 
 	
-	<form name="ricerca" action="?" method="post">
+
 		<p>Cerca la sede pi&ugrave; vicina</p>
 		<input type="text" name="sede" value=""/><br/><br/>
-		<input  type="submit" name="button" value="INIZIA LA RICERCA"/>
+		<button  onclick="getLocation()">INIZIA LA RasdasICERCA</button>
 
-	</form>
-	
 
+
+	<script>
+		var options = {
+		    enableHighAccuracy: true,
+		    timeout: 5000,
+		    maximumAge: 0
+		};
+
+		function success(pos) {
+		    var crd = pos.coords;
+
+		    console.log('Your current position is:');
+		    console.log(`Latitude : ${crd.latitude}`);
+		    console.log(`Longitude: ${crd.longitude}`);
+		    console.log(`More or less ${crd.accuracy} meters.`);
+            var query = `uniadvisor.com:8080/api/coordinates?lat=${crd.latitude}&lng=${crd.longitude}`;
+            console.log(query);
+            userAction(query);
+
+		}
+
+		function error(err) {
+            console.warn(`ERROR(${err.code}): ${err.message}`);
+            window.location.replace("http://uniadvisor.com:8080")
+        }
+		function getLocation() {
+			navigator.geolocation.getCurrentPosition(success, error, options);
+		}
+		const userAction = async (query) => {
+            console.log("awaiting response to "+query);
+            const response = await fetch(query);
+            console.log("extracting json");
+            const myJson = await response.json(); //extract JSON from the http response
+            // do something with myJson
+            console.log(myJson.id);
+        }
+</script>
 </body>
