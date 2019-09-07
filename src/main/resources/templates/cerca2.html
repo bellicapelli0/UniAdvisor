@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="it">
+<head>
+	<title>CERCA SEDE</title>
+	<style>
+	.center {
+	  margin: 0 auto;
+	  margin-left:33%;
+	  padding: 30px;
+	  line-height: 20px;	
+	}	
+	.banner{
+  	 width: 100%;
+	 height: 120px;  	  
+	}
+	.logo{
+	 background: url('img/logo.png') no-repeat top left;
+	 width:176px;
+	 height:107px;
+	 margin-top:6px;
+	 display:block;
+	 float:left;	 
+	}
+	.uniadvisor{  
+	 margin-left:37%;
+	 font-size: 75px;
+	}
+	.user{
+	 margin-right:2%;
+	 float:right;
+	}
+
+	
+	</style>
+
+
+</head>
+<body>
+	<table borderColor=grey width="100%" border="5" cellspacing="0" cellpadding="0" align=center>
+	    <tr>
+	      <td>
+		<div class="banner">
+			<div class="logo" ></div>
+			<div class="uniadvisor">UniAdvisor</div>
+			<div class="user"><b>Hello, <span th:text="${name}">user</span>!</b></div>
+	    	</div>
+	      </td>
+	    </tr>
+	    
+	</table>
+
+	
+	<table borderColor=grey cellspacing="0" cellPadding=10 width="100%" align= center border=5>	
+	
+	    <tr>
+		<td width=100% height="50">
+
+		<br>
+		<h1>Puoi cercare una sede universitaria che gi&agrave; conosci digitando il nome e cliccando su <br/> "inizia la ricerca..."</h1>
+	
+		<div class=center id="firstSearch">
+		
+			<input type="text" id="nom" style="height: 35px;" value=""/>
+
+			<input onclick="gotoloc()" type="submit" name="button" style="height: 35px;" value="INIZIA LA RICERCA"/>
+
+
+		</div>
+		<h1>..oppure cliccare su "cerca la sede pi&ugrave; vicina" e trovare la sede universitaria pi&ugrave; vicina a te in questo momento</h1>
+		<div class=center>
+			<input type="text" id="lat" style="height: 35px;" value=""/>
+			<input type="text" id="lng" style="height: 35px;" value=""/><br/>
+			<input onclick="getThree()" type="submit"  name="button2" style="height: 35px;margin-left:5%;" value="CERCA LA SEDE PI&Ugrave; VICINA"/>
+		</div>
+		<br>
+		<div class="center">
+
+			<ul id="results">
+
+			</ul>
+		</div>
+		<script>
+			function gotoloc() {
+				var name = document.getElementById("nom").value;
+				console.log(name);
+				if (name.length==0) return;
+				var query = `http://uniadvisor.com:8080/api/location?name=${name}`;
+				userAction1(query, name);
+			}
+
+			const userAction1 = async (query, name) => {
+				console.log("awaiting response to "+query);
+				const response = await fetch(query);
+				console.log("extracting json");
+				const myJson = await response.json(); //extract JSON from the http response
+				console.log(myJson);
+				if(!myJson.location){
+					document.getElementById("firstSearch").innerHTML += `<h2 style="color:red">LOCATION ${name} NON TROVATA</h2>`;
+					return;
+				}
+				window.location.replace(myJson.location.shortName);
+			}
+
+			function getThree() {
+				var lat = document.getElementById("lat").value;
+				var lng = document.getElementById("lng").value;
+				var query = `http://uniadvisor.com:8080/api/threeclosest?lat=${lat}&lng=${lng}`;
+				userAction2(query);
+			}
+
+			const userAction2 = async (query) => {
+				var list = document.getElementById("results").innerHTML;
+				if (list.length > 10) return;
+
+				console.log("awaiting response to "+query);
+				const response = await fetch(query);
+				console.log("extracting json");
+				const myJson = await response.json(); //extract JSON from the http response
+				console.log(myJson);
+				console.log("test");
+				console.log(myJson[0]);
+				console.log(myJson[0].longName);
+
+				var longName0 = myJson[0].longName;
+				var shortName0 = myJson[0].shortName;
+				var longName1 = myJson[1].longName;
+				var shortName1 = myJson[1].shortName;
+				var longName2 = myJson[2].longName;
+				var shortName2 = myJson[2].shortName;
+
+
+				list += "<h2>RISULTATI</h2><br/>"
+				list += `<li> <a href="${shortName0}"> ${longName0} </a> </li>`
+				list += `<li> <a href="${shortName1}"> ${longName1} </a> </li>`
+				list += `<li> <a href="${shortName2}"> ${longName2} </a> </li>`
+				document.getElementById("results").innerHTML = list;
+				window.scrollTo(0,document.body.scrollHeight);
+        	}
+		</script>
+		</td>
+
+	   </tr>
+
+	<table>
+
+</body>
