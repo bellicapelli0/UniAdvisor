@@ -77,7 +77,7 @@
 	}
       </style>
 	<script type="text/javascript">
-    var shortName = "roma3";
+    var shortName = "mirafiori";
     var newMean = "";
 
     function getMean(voto){
@@ -166,7 +166,8 @@
 	
 	    <tr>
 		<td width=100% height="50">
-			<h1>Università degli Studi Roma 3</h1>
+
+			<h1>Università la Sapienza - Dipartimento di Filosofia</h1>
 			<br>
 	
 			<div id="map">
@@ -174,13 +175,13 @@
 			<script>
 			// Initialize and add the map
 			function initMap() {
-		  		// The location of roma3
-		  		var roma3 = {lat: 41.862, lng: 12.478};
-		  		// The map, centered at roma3
+		  		// The location of mirafiori
+		  		var mirafiori = {lat: 41.919, lng: 12.517};
+		  		// The map, centered at mirafiori
 		  		var map = new google.maps.Map(
-		      		document.getElementById('map'), {zoom: 17, center: roma3});
-		  		// The marker, positioned at Uluru
-		  		var marker = new google.maps.Marker({position: roma3, map: map});
+		      		document.getElementById('map'), {zoom: 17, center: mirafiori});
+		  		// The marker, positioned at mirafiori
+		  		var marker = new google.maps.Marker({position: mirafiori, map: map});
 			}
 			</script>
 			<!--Load the API from the specified URL
@@ -195,8 +196,8 @@
 
 			<div id="specifics">
 			<br><br>
-			<h2> Indirizzo: via Ostiense, 163 </h2>  
-			<h2> Aria Condizionata: si </h2>
+			<h2> Indirizzo: via Carlo Fea, 2 </h2>  
+			<h2> Aria Condizionata: no </h2>
 			<h2> Prese: si </h2>
 			<h2> WiFi: si </h2>
 				<script type="text/javascript" th:text="${stars}">star(4);</script>

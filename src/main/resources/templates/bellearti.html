@@ -3,67 +3,219 @@
 <head>
 	<title>ACCADEMIA BELLE ARTI</title>
 	<style>
-       /* Set the size of the div element that contains the map */
-      #map {
-        height: 400px;  
-        width: 40%;  
-	float:left;
-	left:100px;
-       }
-      #specifics {
-        height: 50px;  
-        width: 40%;  
-	float:right;
-	position:absolute;
-	top:175px;
-	left:725px;
-       }
-      h1 {
-	text-align: center;
-      }
+		#map {
+		  height: 400px;
+		  width: 40%;
+		  float:left;
+		  left:100px;
+	      	}
+	      	#specifics {
+		  height: 50px;
+		  width: 40%;
+		  float:right;
+		  top:175px;
+		  left:725px;
+	       	}
+	      	h1 {
+		text-align: center;
+		}
+		.center {
+		  margin: 0 auto;
+		  margin-left:33%;
+		  padding: 30px;
+		  line-height: 20px;
+		}
+		.banner{
+	  	 width: 100%;
+		 height: 120px;
+		}
+		.logo{
+		 background: url('img/logo.png') no-repeat top left;
+		 width:176px;
+		 height:107px;
+		 margin-top:6px;
+		 display:block;
+		 float:left;
+		}
+		.uniadvisor{
+		 margin-top:8px;
+		 margin-left:38%;
+		 font-size: 75px;
+		}
+		.user{
+		 margin-right:2%;
+		 float:right;
+		}
       </style>
+	<style type="text/css">
+	#STAR_RATING ul
+	{
+  	  margin: 0px;
+  	  padding: 0px;
+  	  height: 16px;
+  	  list-style: none;
+	}
+	#STAR_RATING li
+	{
+	  width: 19px;
+ 	  height: 16px;
+  	  display: block;
+	  float: left;
+	  background-image: url('img/star-off.gif');
+	  background-repeat: no-repeat;
+	  cursor: pointer;
+	}
+	#STAR_RATING li.on
+	{
+	  background-image: url('img/star-on.gif');
+	}
+	#STAR_RATING span.output
+	{
+  	  padding: 3px;
+  	  color: #339900;
+          font-weight: bold;
+	}
+      </style>
+	<script type="text/javascript">
+    var shortName = "bellearti";
+    var newMean = "";
+
+    function getMean(voto){
+      var query = `http://uniadvisor.com:8080/api/stars?location=${shortName}&rate=${voto}`
+      userAction(query);
+    }
+    const userAction = async (query) => {
+
+		console.log("awaiting response to "+query);
+		const response = await fetch(query);
+		console.log("extracting json");
+		const myJson = await response.json(); //extract JSON from the http response
+		console.log(myJson);
+		newMean = myJson;
+		console.log(newMean);
+	  var star_output = `<span class="output">La media è di ${newMean} stelle!</span>`;
+	  // Cambio dinamicamente il contenuto del DIV contenitore con il messaggio di
+	  // conferma di votazione avvenuta
+	  document.getElementById('STAR_RATING').innerHTML = star_output;
+	}
+	// faccio il preload dell'immagine utilizzata per l'effetto rollover
+	var staron = new Image(); staron.src = "img/star-on.gif";
+
+	// Definisco la funzione per la votazione che verrà lanciata
+	// all'evento onclick su una delle 5 stelle
+	function star_vota(QT){
+	  getMean(QT);
+
+	}
+
+	// Definisco la funzione per "accendere" dinamicamente le stelle
+	// unico argomento è il numero di stelle da accendere
+	function star_accendi(QT){
+	  // verifico che esistano i DIV delle stelle
+	  // se il DIV non esiste significa che si è già votato
+	  if (document.getElementById('star_1'))
+	  {
+	    // Ciclo tutte e 5 i DIV contenenti le stelle
+	    for (i=1; i<=5; i++)
+	    {
+	      // se il div è minore o uguale del numero di stelle da accendere
+	      // imposto dinamicamente la classe su "on"
+	      if (i<=QT) document.getElementById('star_' + i).className = 'on';
+	      // in caso contrario spengo la stella...
+	      else document.getElementById('star_' + i).className = '';
+	    }
+	  }
+	}
+
+	// Questa è la funzione che produce l'output.
+	// richiede come unico argomento il numero di stelle che si vuole accendere
+	// di default (possiamo in questo, ad esempio, modo mostrare il voto ottenuto
+	// nelle precedenti votazioni)
+	function star(QT, V){
+	  // stampo il codice HTML che produce le stelle
+	  document.write('<div id="STAR_RATING" onmouseout="star_accendi(' + QT + ')""><ul>');
+	  document.write('<li id="star_1" onclick="star_vota(1)" onmouseover="star_accendi(0); star_accendi(1)"></li>');
+	  document.write('<li id="star_2" onclick="star_vota(2)" onmouseover="star_accendi(0); star_accendi(2)"></li>');
+	  document.write('<li id="star_3" onclick="star_vota(3)" onmouseover="star_accendi(0); star_accendi(3)"></li>');
+	  document.write('<li id="star_4" onclick="star_vota(4)" onmouseover="star_accendi(0); star_accendi(4)"></li>');
+	  document.write('<li id="star_5" onclick="star_vota(5)" onmouseover="star_accendi(0); star_accendi(5)"></li>');
+	  document.write('</ul> avg. vote = '+ QT +'<br>');
+	  document.write('n. of votes = '+ V +'</div>');
+	  // accendo le stelle definite in argomento
+	  star_accendi(QT);
+	}
+</script>
 </head>
+
+
 <body>
 
-	<b>Hello, <span th:text="${name}">user</span>!</b>
-	<br>
-	<h1>Accademia di Belle Arti</h1>
-	<br>
-	
-	<div id="map">
-	
-	<script>
-	// Initialize and add the map
-	function initMap() {
-  		// The location of bellearti
-  		var bellearti = {lat: 41.907, lng: 12.475};
-  		// The map, centered at bellearti
-  		var map = new google.maps.Map(
-      		document.getElementById('map'), {zoom: 17, center: bellearti});
-  		// The marker, positioned at bellearti
-  		var marker = new google.maps.Marker({position: bellearti, map: map});
-	}
-	</script>
-	<!--Load the API from the specified URL
-	* The async attribute allows the browser to render the page while the API loads
-	* The key parameter will contain your own API key (which is not needed for this tutorial)
-	* The callback parameter executes the initMap() function
-	-->
-	<script async defer
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB368qVPwB8e9RmEjrYNAh40q9EfD6m8DY&callback=initMap">
-	</script>
-	</div>
+	<table borderColor=grey width="100%" border="5" cellspacing="0" cellpadding="0" align=center>
+	    <tr>
+	      <td>
+		<div class="banner">
+			<div class="logo"></div>
+			<div class="uniadvisor">UniAdvisor</div>
+			<div class="user" th:text="'Welcome, '+${name}+'!'">user</div>
+	    	</div>
+	      </td>
+	    </tr>
+	    
+	</table>
 
-	<div id="specifics">
-	<br><br>
-	<h2> Indirizzo: via di Ripetta, 222 </h2>  
-	<h2> Aria Condizionata: no </h2>
-	<h2> Prese: no </h2>
-	<h2> WiFi: si </h2>
-	<br>
-	</div>
+	
+	<table borderColor=grey cellspacing="0" cellPadding=10 width="100%" align= center border=5>	
+	
+	    <tr>
+		<td width=100% height="50">
+
+			<br>
+			<h1>Accademia di Belle Arti</h1>
+			<br>
+	
+			<div id="map">
+	
+			<script>
+			// Initialize and add the map
+			function initMap() {
+		  		// The location of bellearti
+		  		var bellearti = {lat: 41.907, lng: 12.475};
+		  		// The map, centered at bellearti
+		  		var map = new google.maps.Map(
+		      		document.getElementById('map'), {zoom: 17, center: bellearti});
+		  		// The marker, positioned at bellearti
+		  		var marker = new google.maps.Marker({position: bellearti, map: map});
+			}
+			</script>
+			<!--Load the API from the specified URL
+			* The async attribute allows the browser to render the page while the API loads
+			* The key parameter will contain your own API key (which is not needed for this tutorial)
+			* The callback parameter executes the initMap() function
+			-->
+			<script async defer
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB368qVPwB8e9RmEjrYNAh40q9EfD6m8DY&callback=initMap">
+			</script>
+			</div>
+
+			<div id="specifics">
+			<br><br>
+			<h2> Indirizzo: via di Ripetta, 222 </h2>  
+			<h2> Aria Condizionata: no </h2>
+			<h2> Prese: no </h2>
+			<h2> WiFi: si </h2>
+				<script type="text/javascript" th:text="${stars}">star(4);</script>
+			<br>
+			</div>
+
+		</td>
+
+	   </tr>
+
+	<table>
 
 </body>
+	
+
 </html>
 
 
