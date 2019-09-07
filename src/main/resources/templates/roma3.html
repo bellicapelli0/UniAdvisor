@@ -133,7 +133,7 @@
 	// nelle precedenti votazioni)
 	function star(QT, V){
 	  // stampo il codice HTML che produce le stelle
-	  document.write('<div id="STAR_RATING" onmouseout="star_accendi(' + QT + ')""><ul>');
+	  document.write('<div id="STAR_RATING" onmouseout="star_accendi(' + Math.round(QT) + ')""><ul>');
 	  document.write('<li id="star_1" onclick="star_vota(1)" onmouseover="star_accendi(0); star_accendi(1)"></li>');
 	  document.write('<li id="star_2" onclick="star_vota(2)" onmouseover="star_accendi(0); star_accendi(2)"></li>');
 	  document.write('<li id="star_3" onclick="star_vota(3)" onmouseover="star_accendi(0); star_accendi(3)"></li>');
@@ -142,7 +142,7 @@
 	  document.write('</ul> avg. vote = '+ QT +'<br>');
 	  document.write('n. of votes = '+ V +'</div>');
 	  // accendo le stelle definite in argomento
-	  star_accendi(QT);
+	  star_accendi(Math.round(QT));
 	}
 </script>
 </head>
