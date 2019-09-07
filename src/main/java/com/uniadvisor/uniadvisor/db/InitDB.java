@@ -1,5 +1,6 @@
-package com.uniadvisor.uniadvisor.api;
+package com.uniadvisor.uniadvisor.db;
 
+import com.uniadvisor.uniadvisor.api.Location;
 import com.uniadvisor.uniadvisor.db.DBContext;
 import com.uniadvisor.uniadvisor.db.Database;
 import com.uniadvisor.uniadvisor.db.MapDBContext;
@@ -101,7 +102,7 @@ public class InitDB {
 
         Database.commit();
 
-        System.out.println(stars.get("diag"));
+//        System.out.println(stars.get("diag"));
 //        System.out.println(Database.getLocations().keySet());
 //         Map<String, double[]> map = Database.test();
 ////         map.put("a", new double[]{1.0,5.0});
