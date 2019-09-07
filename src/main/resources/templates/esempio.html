@@ -53,18 +53,35 @@
       </style>
 
       <script type="text/javascript">
+    var shortName = "diag";
+    var newMean = "";
+
+    function getMean(voto){
+      var query = `http://uniadvisor.com:8080/api/stars?location=${shortName}&rate=${voto}`
+      userAction(query);
+    }
+    const userAction = async (query) => {
+
+		console.log("awaiting response to "+query);
+		const response = await fetch(query);
+		console.log("extracting json");
+		const myJson = await response.json(); //extract JSON from the http response
+		console.log(myJson);
+		newMean = myJson;
+		console.log(newMean);
+	  var star_output = `<span class="output">La media è di ${newMean} stelle!</span>`;
+	  // Cambio dinamicamente il contenuto del DIV contenitore con il messaggio di
+	  // conferma di votazione avvenuta
+	  document.getElementById('STAR_RATING').innerHTML = star_output;
+	}
 	// faccio il preload dell'immagine utilizzata per l'effetto rollover
 	var staron = new Image(); staron.src = "img/star-on.gif";
 
 	// Definisco la funzione per la votazione che verrà lanciata
 	// all'evento onclick su una delle 5 stelle
 	function star_vota(QT){
+	  getMean(QT);
 
-  	  // Creo una variabile con l'output da restituire al momento del voto
-	  var star_output = '<span class="output">Hai votato ' + QT + ' stelle!</span>';
-	  // Cambio dinamicamente il contenuto del DIV contenitore con il messaggio di
-	  // conferma di votazione avvenuta
-	  document.getElementById('STAR_RATING').innerHTML = star_output;
 	}
 	
 	// Definisco la funzione per "accendere" dinamicamente le stelle
