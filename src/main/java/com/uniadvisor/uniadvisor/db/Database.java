@@ -4,6 +4,7 @@ import com.uniadvisor.uniadvisor.api.Location;
 import com.uniadvisor.uniadvisor.util.Pair;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -30,5 +31,13 @@ public class Database {
 
     public static Map<String, double[]> test(){
         return db.getMap("TESTARRAY");
+    }
+
+    /**
+     * returns a map with k = location name and v = "#votes,#arra
+     * @return
+     */
+    public static Map<String, List<Integer>> stars(){
+        return db.getMap("STAR_RATINGS");
     }
 }

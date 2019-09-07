@@ -8,6 +8,8 @@ import org.mapdb.DB;
 
 
 import javax.xml.crypto.Data;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class InitDB {
@@ -32,7 +34,17 @@ public class InitDB {
         locations.put("maxxi", new Location(41.928, 12.477, "MAXXI", "maxxi", "Via Guido REni, 4A", Boolean.TRUE, Boolean.FALSE, Boolean.TRUE));
         locations.put("roma3", new Location(41.862, 12.478, "Università degli Studi Roma 3", "roma3", "Via Ostiense, 163", Boolean.TRUE, Boolean.TRUE, Boolean.TRUE));
         locations.put("bellearti", new Location(41.907, 12.475, "Accademia di Belle Arti", "bellearti", "Via di Ripetta, 222", Boolean.FALSE, Boolean.FALSE, Boolean.TRUE));
+
+        Map<String, List<Integer>> stars = Database.stars();
+        LinkedList<Integer> diag = new LinkedList<>();
+        diag.add(3);
+        diag.add(4);
+        diag.add(5);
+        stars.put("diag", diag);
+
         Database.commit();
+
+        System.out.println(stars.get("diag"));
 //        System.out.println(Database.getLocations().keySet());
 //         Map<String, double[]> map = Database.test();
 ////         map.put("a", new double[]{1.0,5.0});

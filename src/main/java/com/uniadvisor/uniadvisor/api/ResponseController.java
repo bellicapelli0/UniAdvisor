@@ -3,11 +3,13 @@ package com.uniadvisor.uniadvisor.api;
 import com.uniadvisor.uniadvisor.db.Database;
 import com.uniadvisor.uniadvisor.util.LocationUtil;
 
+import com.uniadvisor.uniadvisor.util.StarsUtil;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
@@ -41,6 +43,22 @@ public class ResponseController {
         return LocationUtil.threeClosest(lat,lng);
     }
 
+
+    @GetMapping("/api/stars")
+    public String stars(@RequestParam(value = "location") String location,
+                        @RequestParam(value = "rate", defaultValue = "0") Integer rate){
+        if(rate!=0){
+            List<Integer> stars = Database.stars().get(location);
+            stars.add(rate);
+            Database.stars().put(location, stars);
+            Database.commit();
+            System.out.println("Updated! "+ location +" has now "+Database.stars().get(location).size()+" votes with "+ StarsUtil.meanRating(stars) +" mean.");
+
+        }
+        float mean = StarsUtil.meanRating(Database.stars().get(location));
+
+        return mean+"";
+    }
 
     //Se vai su localhost:8080/example, vedi il risultato
     @GetMapping("/example")
