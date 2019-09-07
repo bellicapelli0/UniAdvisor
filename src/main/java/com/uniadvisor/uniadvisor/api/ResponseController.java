@@ -57,7 +57,7 @@ public class ResponseController {
         }
         float mean = StarsUtil.meanRating(Database.stars().get(location));
 
-        return mean+"";
+        return String.format("%.2f", mean);
     }
 
     //Se vai su localhost:8080/example, vedi il risultato
