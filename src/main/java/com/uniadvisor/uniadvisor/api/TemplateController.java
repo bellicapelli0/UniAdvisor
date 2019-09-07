@@ -26,7 +26,7 @@ public class TemplateController {
         model.addAttribute("name", userAttributes.get("name"));
 
 //        int f = Math.round(StarsUtil.meanRating(Database.stars().get(location)));
-        float f = StarsUtil.meanRating(Database.stars().get(location));
+        float f = StarsUtil.closestRating(Database.stars().get(location));
         String s = "star("+String.format("%.2f", f)+","+Database.stars().get(location).size()+");";
         model.addAttribute("stars", s);
         return location;
