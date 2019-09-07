@@ -48,11 +48,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                .loginProcessingUrl("http://uniadvisor.com:8080/oauth2/authorization/google")
                 .and()
                 .logout()
                 .logoutSuccessUrl("/")
                 .and()
                 .oauth2Login()
+//                .authorizationEndpoint().baseUri("http://uniadvisor.com:8080/oauth2/authorization/google").and()
 //                .defaultSuccessUrl("/loginSuccess")
                 .defaultSuccessUrl("/")
                 .failureUrl("/loginFailure");
