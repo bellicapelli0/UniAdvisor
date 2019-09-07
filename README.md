@@ -12,7 +12,9 @@ Users are also able to give a 1 to 5 star rating to give their opinion on the lo
 
 Once downloaded, you will need to provide your own oauth client-id and client-secret, and input them in the file application-oauth2.properties found in /src/main/resources/.
 
-Then, run the class 
+Compile it with maven using ```mvn package``` command on the project folder. Compilation output is "uniadvisor-1.0.jar".
+
+Run it using ```java -jar uniadvisor-1.0.jar init``` to initialize the database and then ```java -jar uniadvisor-1.0.jar prod``` to run the program itself.
 
 # API endpoints
 The application exposes several API endpoints that can be used by the user directly, these being:
