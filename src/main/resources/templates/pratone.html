@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="it">
+<html xmlns:layout="http://www.thymeleaf.org" xmlns:th="http://www.thymeleaf.org" lang="it">
 <head>
 	<title>DIAG</title>
 	<style>
@@ -151,11 +151,11 @@
 	<table borderColor=grey width="100%" border="5" cellspacing="0" cellpadding="0" align=center>
 	    <tr>
 	      <td>
-		<div class="banner">
-			<div class="logo"></div>
-			<div class="uniadvisor">UniAdvisor</div>
-			<div class="user" th:text="'Welcome, '+${name}+'!'">user</div>
-	    	</div>
+			  <div class="banner">
+				  <a href="/"><div class="logo"></div></a>
+				  <div class="uniadvisor">UniAdvisor</div>
+				  <div class="user"><b>Hello, <span th:text="${name}">user</span>!</b> <a href="/logout">logout</a></div>
+			  </div>
 	      </td>
 	    </tr>
 	    

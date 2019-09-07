@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="it">
+<html xmlns:layout="http://www.thymeleaf.org" xmlns:th="http://www.thymeleaf.org" lang="it">
 <head>
 	<title>CERCA SEDE</title>
 	<style>
@@ -147,8 +147,9 @@
 
 	</div>
 
-	<div sec:authorize="isAnonymous()">
-		<a href="http://uniadvisor.com:8080/oauth2/authorization/google">login</a>
+	<div class="center" sec:authorize="isAnonymous()">
+		<h1>Login to use UniAdvisor!</h1>
+		Google Oauth: <a href="http://uniadvisor.com:8080/oauth2/authorization/google">login</a>
 	</div>
 
 </body>
