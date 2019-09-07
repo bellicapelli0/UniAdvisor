@@ -8,6 +8,13 @@ Once logged in, the user can either look for a specific location they already kn
 On the location page, the user can find a map of the location, and some important information like the availability of Wi-Fi, electricity plugs and AC.
 Users are also able to give a 1 to 5 star rating to give their opinion on the location.
 
+# How to start
+
+Once downloaded, you will need to provide your own oauth client-id and client-secret, and input them in the file application-oauth2.properties found in /src/main/resources/.
+
+Then, run the class 
+
+# API endpoints
 The application exposes several API endpoints that can be used by the user directly, these being:
 
 <h4>uniadvisor.com:8080/api/location/</h4>
@@ -20,3 +27,9 @@ This endpoint asks for the parameters <b>lat</b> and <b>lng</b> and finds the cl
 This endpoint asks for the parameters <b>lat</b> and <b>lng</b> and finds the three closest locations to the given coordinates.
 
 The above mentioned APIs will default of the Dipartimento di ingegneria informatica e automatica 'Antonio Ruberti' when no parameters are provided.
+
+<h4>uniadvisor.com:8080/api/stars/</h4>
+This endpoint asks for the parameters <b>location</b> and <b>rate</b> and will recieve the rating specified, update the average rating for the given location, and return it.
+In case only the <b>location</b> parameter is specified, the average rating will be returned, without applying any changes to it.
+
+This api is intended only for internal use, but is nonetheless available for testing.
