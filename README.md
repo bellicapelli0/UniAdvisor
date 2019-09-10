@@ -16,6 +16,8 @@ Compile it with maven using ```mvn package``` command on the project folder. Com
 
 Run it using ```java -jar uniadvisor-1.0.jar init``` to initialize the database and then ```java -jar uniadvisor-1.0.jar prod``` to run the program itself.
 
+Application tests are provided in /src/test/python/ folder.
+
 # API endpoints
 The application exposes several API endpoints that can be used by the user directly, these being:
 

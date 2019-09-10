@@ -22,7 +22,7 @@ public class ResponseController {
     public ApiResponse location(@RequestParam(value="name", defaultValue="diag") String name) {
         Map<String, Location> locations = Database.getLocations();
 
-        return new ApiResponse(counter.incrementAndGet(), locations.get(name));
+        return new ApiResponse(locations.get(name));
     }
 
     @RequestMapping("/api/coordinates") //richiesta per la location più vicina
@@ -31,7 +31,7 @@ public class ResponseController {
         double lat = Double.parseDouble(la);
         double lng = Double.parseDouble(lo);
 
-        return new ApiResponse(counter.incrementAndGet(), LocationUtil.closest(lat,lng));
+        return new ApiResponse(LocationUtil.closest(lat,lng));
     }
 
     @RequestMapping("/api/threeclosest") //richiesta per la location più vicina
